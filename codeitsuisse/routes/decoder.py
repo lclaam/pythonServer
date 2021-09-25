@@ -14,7 +14,7 @@ def decoder():
     values = data.get("possible_values")
     num = data.get("num_slots")
 #     answer = [values[4] for _ in range(num)]
-    answer = ['o','b','z','j','j']
+    answer = ['o','j','z','v','j']
     # for _ in data["possible_values"]:
     # answer = [ data["possible_values"][0] for _ in range(data["num_slots"])]
 
