@@ -55,54 +55,6 @@ def parasite():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     inputValue = data.get("input")
-    result = []
-#     for r in inputValue:
-#         room = r['room']
-#         grid = r['grid']
-#         interested = r["interestedIndividuals"]
-#         infected = []
-#         ans = [[-1 for _ in range(len(grid[0]))] for _ in range(len(grid))]
-#         grid_len = len(grid[0])
-#         for i in range(len(grid)):
-#             for j in range(grid_len):
-#                 # ans[i][j] = 0
-#                 if (grid[i][j] == 3):
-#                     infected.append([i+1,j+1])
-#                     ans[i][j] = 0
-#             grid[i].insert(0,-1)
-#             grid[i].append(-1)
-
-#         # add boundary
-#         temp = [-1 for _ in range(len(grid[0]))]
-#         grid.insert(0,temp)
-#         grid.append(temp)
-#         for i in infected:
-#             infect2(i[0],i[1],grid,ans,0)
-#             # if (len(infected) == 1):
-#             #     infect(i[0],i[2],infected[0][0],infected[0][1],grid)
-
-#             # print(i)
-#         # solve()
-#         # print(grid)
-        
-#         p1 = {}
-#         for i in interested:
-#             # p1[i] = ans[i[0],i[1]]
-#             p1[i] = ans[int(i[0])][int(i[2])]
-#             # print(ans[int(i[0])][int(i[2])])
-#         # for i in ans:
-#         #     print(i)
-#         # for i in grid:
-#         #     print(i)
-
-#         current = {
-#             "room": room,
-#             "p1": p1,
-#             "p2": -1,
-#             "p3": -1,
-#             "p4": -1
-#         }
-#         result.append(current)
     result = inputValue
     logging.info("My result :{}".format(result))
     return json.dumps(result)
