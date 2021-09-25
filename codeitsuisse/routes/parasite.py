@@ -67,7 +67,7 @@ def parasite():
                 # ans[i][j] = 0
                 if (grid[i][j] == 3):
                     infected.append([i+1,j+1])
-                    ans[i][j] = 0
+#                     ans[i][j] = 0
             grid[i].insert(0,-1)
             grid[i].append(-1)
 
