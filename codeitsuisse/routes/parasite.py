@@ -103,7 +103,7 @@ def parasite():
             "p4": -1
         }
         result.append(current)
-    result = "Hello"
+#     result = "Hello"
     logging.info("My result :{}".format(result))
     return json.dumps(result)
 
