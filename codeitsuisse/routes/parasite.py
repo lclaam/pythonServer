@@ -87,7 +87,8 @@ def parasite():
         p1 = {}
         for i in interested:
             # p1[i] = ans[i[0],i[1]]
-            p1[i] = ans[int(i[0])][int(i[2])]
+            p = i.split(',')
+            p1[i] = ans[int(p[0])][int(p[1])]
             # print(ans[int(i[0])][int(i[2])])
         # for i in ans:
         #     print(i)
@@ -102,7 +103,7 @@ def parasite():
             "p4": -1
         }
         result.append(current)
-#     result = "Hello"
+    result = "Hello"
     logging.info("My result :{}".format(result))
     return json.dumps(result)
 
