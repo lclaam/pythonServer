@@ -110,7 +110,7 @@ def parasite():
         current = {
             "room": room,
             "p1": p1,
-            "p2": -1,
+            "p2": p2,
             "p3": -1,
             "p4": -1
         }
