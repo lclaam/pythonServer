@@ -11,8 +11,9 @@ logger = logging.getLogger(__name__)
 def decoder():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-    for x in data["possible_values"]:
-        answer = [ data["possible_values"][0] for _ in range(data["num_slots"])]
+    data = data.get()
+    # for _ in data["possible_values"]:
+    answer = [ data["possible_values"][0] for _ in range(data["num_slots"])]
 
     result = {
         "answer": answer
