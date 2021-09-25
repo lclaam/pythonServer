@@ -60,7 +60,7 @@ def parasite():
     result = []
     for r in data:
         room = r['room']
-        if (room > 12):
+        if (room > 10):
             current = {
                 "room": room,
                 "p1": -1,
