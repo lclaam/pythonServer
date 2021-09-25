@@ -16,7 +16,7 @@ def infect2(x,y,maze,ans,count):
     if (maze[x-1][y] == 1):
         # print("moving up")
         maze[x-1][y] = 3
-        if (ans[x-2][y-1] == -1):
+        if (ans[x-2][y-1] == -2):
             ans[x-2][y-1] = count
         else:
             ans[x-2][y-1] = min(count,ans[x-2][y-1])
@@ -25,7 +25,7 @@ def infect2(x,y,maze,ans,count):
     if (m2[x+1][y] == 1):
         # print("moving down")
         m2[x+1][y] = 3
-        if (ans[x][y-1] == -1):
+        if (ans[x][y-1] == -2):
             ans[x][y-1] = c2
         else:
             ans[x][y-1] = min(count,ans[x][y-1])
@@ -35,7 +35,7 @@ def infect2(x,y,maze,ans,count):
     if (m3[x][y-1] == 1):
         # print("moving left")
         m3[x][y-1] = 3
-        if (ans[x-1][y-2] == -1):
+        if (ans[x-1][y-2] == -2):
             ans[x-1][y-2] = c3
         else:
             ans[x-1][y-2] = min(count,ans[x-1][y-2])
@@ -45,7 +45,7 @@ def infect2(x,y,maze,ans,count):
     if (m4[x][y+1] == 1):
         # print("moving right")
         m4[x][y+1] = 3
-        if (ans[x-1][y] == -1):
+        if (ans[x-1][y] == -2):
             ans[x-1][y] = c4
         else:
             ans[x-1][y] = min(count,ans[x-1][y])
@@ -68,9 +68,10 @@ def parasite():
         for i in range(len(grid)):
             for j in range(grid_len):
                 # ans[i][j] = 0
-                if (grid[i][j] == 3):
+                if (grid[i][j] == 1):
+                    ans[i][j] = -2
+                elif (grid[i][j] == 3):
                     infected.append([i+1,j+1])
-                    # ans[i][j] = 0
             grid[i].insert(0,-1)
             grid[i].append(-1)
 
@@ -92,20 +93,18 @@ def parasite():
             # p1[i] = ans[i[0],i[1]]
             p = i.split(',')
             p1[i] = ans[int(p[0])][int(p[1])]
-            # print(ans[int(i[0])][int(i[2])])
-        # for i in ans:
-        #     print(i)
-        # for i in grid:
-        #     print(i)
+            
         p2 = -1
+        b = False
         for i in ans:
+            for j in i:
+                if (j == -2):
+                    b = True
+                    break
             if (max(i) > p2):
                 p2 = max(i)
-        for i in grid:
-            for j in i:
-                if (j == 1):
-                    p2 = -1
-                    break
+        if (b):
+            p2 = -1
 
         current = {
             "room": room,
