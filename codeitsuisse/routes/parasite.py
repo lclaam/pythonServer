@@ -60,6 +60,15 @@ def parasite():
     result = []
     for r in data:
         room = r['room']
+        if (room > 12):
+            current = {
+                "room": room,
+                "p1": -1,
+                "p2": -1,
+                "p3": -1,
+                "p4": -1
+            }
+            break
         grid = r['grid']
         interested = r["interestedIndividuals"]
         infected = []
@@ -93,7 +102,7 @@ def parasite():
             # p1[i] = ans[i[0],i[1]]
             p = i.split(',')
             p1[i] = ans[int(p[0])][int(p[1])]
-            
+
         p2 = -1
         b = False
         for i in ans:
