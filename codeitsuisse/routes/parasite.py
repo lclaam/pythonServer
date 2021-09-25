@@ -1,5 +1,6 @@
 import logging
 import json
+from copy import deepcopy
 
 from flask import request, jsonify
 
@@ -9,6 +10,8 @@ logger = logging.getLogger(__name__)
 
 def infect2(x,y,maze,ans,count):
     count+=1
+    c2,c3,c4 = count, count, count
+    m2,m3,m4 = deepcopy(maze), deepcopy(maze), deepcopy(maze)
     # move up
     if (maze[x-1][y] == 1):
         # print("moving up")
@@ -19,35 +22,35 @@ def infect2(x,y,maze,ans,count):
             ans[x-2][y-1] = min(count,ans[x-2][y-1])
         infect2(x-1,y,maze,ans,count)
     # move down
-    if (maze[x+1][y] == 1):
+    if (m2[x+1][y] == 1):
         # print("moving down")
-        maze[x+1][y] = 3
+        m2[x+1][y] = 3
         if (ans[x][y-1] == -1):
-            ans[x][y-1] = count
+            ans[x][y-1] = c2
         else:
             ans[x][y-1] = min(count,ans[x][y-1])
-        infect2(x+1,y,maze,ans,count)
-
+        infect2(x+1,y,m2,ans,c2)
+    
     # move left 
-    if (maze[x][y-1] == 1):
-        # print("moving down")
-        maze[x][y-1] = 3
+    if (m3[x][y-1] == 1):
+        # print("moving left")
+        m3[x][y-1] = 3
         if (ans[x-1][y-2] == -1):
-            ans[x-1][y-2] = count
+            ans[x-1][y-2] = c3
         else:
             ans[x-1][y-2] = min(count,ans[x-1][y-2])
-        infect2(x,y-1,maze,ans,count)
+        infect2(x,y-1,m3,ans,c3)
 
     # move right
-    if (maze[x][y+1] == 1):
-        # print("moving down")
-        maze[x][y+1] = 3
+    if (m4[x][y+1] == 1):
+        # print("moving right")
+        m4[x][y+1] = 3
         if (ans[x-1][y] == -1):
-            ans[x-1][y] = count
+            ans[x-1][y] = c4
         else:
             ans[x-1][y] = min(count,ans[x-1][y])
-        infect2(x,y+1,maze,ans,count)
-    return 0
+        infect2(x,y+1,m4,ans,c4)
+    return maze
 
 @app.route('/parasite', methods=['POST'])
 def parasite():
@@ -67,7 +70,7 @@ def parasite():
                 # ans[i][j] = 0
                 if (grid[i][j] == 3):
                     infected.append([i+1,j+1])
-#                     ans[i][j] = 0
+                    # ans[i][j] = 0
             grid[i].insert(0,-1)
             grid[i].append(-1)
 
@@ -94,6 +97,15 @@ def parasite():
         #     print(i)
         # for i in grid:
         #     print(i)
+        p2 = -1
+        for i in ans:
+            if (max(i) > p2):
+                p2 = max(i)
+        for i in grid:
+            for j in i:
+                if (j == 1):
+                    p2 = -1
+                    break
 
         current = {
             "room": room,
@@ -103,7 +115,6 @@ def parasite():
             "p4": -1
         }
         result.append(current)
-#     result = "Hello"
     logging.info("My result :{}".format(result))
     return json.dumps(result)
 
