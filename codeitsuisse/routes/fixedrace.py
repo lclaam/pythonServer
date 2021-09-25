@@ -14,7 +14,7 @@ def fixedrace():
     
     result = data
     logging.info("My result :{}".format(result))
-    return json.dumps(result)
+    return result
 
 
 
