@@ -13,7 +13,8 @@ def decoder():
     logging.info("data sent for evaluation {}".format(data))
     values = data.get("possible_values")
     num = data.get("num_slots")
-    answer = [values[0] for _ in range(num)]
+#     answer = [values[0] for _ in range(num)]
+    answer = ['h','h','h','w','w']
     # for _ in data["possible_values"]:
     # answer = [ data["possible_values"][0] for _ in range(data["num_slots"])]
 
